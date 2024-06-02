@@ -36,8 +36,7 @@
 
             //salvando borda e massa na pizza
 
-            $stmt = $conn-> prepare("INSERT INTO pizzas (borda_id, massa_id) VALUES (:borda, :massa)
-            ");
+            $stmt = $conn-> prepare("INSERT INTO pizzas (borda_id, massa_id) VALUES (:borda, :massa)");
 
             //filtrando inputs
 
@@ -49,8 +48,7 @@
             //resgatando ultimo ai da ultima pizza
             $pizzaId = $conn->lastInsertId();
 
-            $stmt = $conn->prepare("INSERT INTO pizza_sabor (pizza_id, sabor_id) VALUES (:pizza,
-            :sabor)");
+            $stmt = $conn->prepare("INSERT INTO pizza_sabor (pizza_id, sabor_id) VALUES (:pizza,:sabor)");
             
             // repetição ate terminar de salva todos os sabores
             foreach($sabores as $sabor){
