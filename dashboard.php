@@ -1,5 +1,7 @@
 <?php
-    include_once("templetes/header.php");
+    include_once("templetes/header.php");  
+    include_once("process/ordes.php"); 
+
     ?>
     <div id= "main-container">
         <div class="container">
