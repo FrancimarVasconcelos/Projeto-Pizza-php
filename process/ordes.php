@@ -30,7 +30,7 @@
             $pizzaData = $pizzaQuery->fetch(PDO::FETCH_ASSOC);
 
             //regatando a borda da pizza
-            $borda"Query = $conn->prepare("SELECT * FROM bordas WHERE id = :borda_id");
+            $bordaQuery = $conn->prepare("SELECT * FROM bordas WHERE id = :borda_id");
 
             $bordaQuery->bindParam(":borda_id", $pizzaData["borda_id"]);
 
