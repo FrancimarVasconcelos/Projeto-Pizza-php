@@ -52,7 +52,7 @@
             $pizza["massa"] = $massa["tipo"];
 
             //--------------------------------------
-            $saboresQuery = $conn->prepare("SELECT * FROM pizza_sabor WHERE id = :pizza_id = pizza_id");
+            $saboresQuery = $conn->prepare("SELECT * FROM pizza_sabor WHERE pizza_id = :pizza_id");
 
             $saboresQuery->bindParam(":pizza_id", $pizza["id"]);
 
@@ -85,10 +85,37 @@
             array_push($pizzas, $pizza);
         }
 
-        print_r($pizzas);
+        //resgastando os status
+        $statusQuery = $conn->query("SELECT * FROM status;");
+
+        $status = $statusQuery->fetchAll();
 
     } else if($method === "POST") {
 
+        //verificando tipos de POST
+        $type = $_POST["type"];
+
+        //deletar pedido
+        if($type === "delete"){
+
+            $pizzaId = $_POST["id"];
+
+            $deleteQuery = $conn->prepare("DELETE FROM pedidos WHERE pizza_id = :pizza_id;");
+
+            $deleteQuery->bindParam(":pizza_id", $pizzaId, PDO::PARAM_INT);
+
+            $deleteQuery->execute();
+
+            $_SESSION["msg"] = "Pedido removido com sucesso!";
+            $_SESSION["status"] = "success";
+        }
+
+        //retorna usuario para dashboard
+       header("Location: ../dashboard.php"); 
+    
+
     }
+
+    
 
 ?>
